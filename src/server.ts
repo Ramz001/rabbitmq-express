@@ -21,11 +21,12 @@ app.post("/produce", async (req: Request, res: Response) => {
 
 app.post("/consume", async (req: Request, res: Response) => {
   try {
-    runConsumer(); // Don't await, as it runs indefinitely
-    res.status(200).json({ message: "Consumer started." });
+    // Start the consumer without awaiting, as it runs indefinitely
+    runConsumer();
+    return res.status(200).json({ message: "Consumer started." });
   } catch (error) {
     console.error("Error in /consume:", error);
-    res.status(500).json({ error: "Failed to start consumer." });
+    return res.status(500).json({ error: "Failed to start consumer." });
   }
 });
 
