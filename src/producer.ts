@@ -1,7 +1,7 @@
 import amqp from 'amqplib';
 
 export const runProducer = async (): Promise<void> => {
-  const connection = await amqp.connect('amqp://localhost');
+  const connection = await amqp.connect('amqp://guest:admin@localhost');
   const channel = await connection.createChannel();
 
   const sendMessage = async (queue: string, message: string): Promise<void> => {
